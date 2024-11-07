@@ -8,7 +8,7 @@ type CharacterGalleryProps = {
 export default function CharacterGallery(props: Readonly<CharacterGalleryProps>) {
     return (
         <div className="character-gallery">
-            {props.characters.map((character) => <CharacterCard key={character.name} character={character}/>)}
+            {props.characters.map((character) => <CharacterCard key={character.id} character={character}/>)}
         </div>
     );
 }

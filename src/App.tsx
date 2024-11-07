@@ -39,6 +39,20 @@ export default function App() {
                console.error(error)
             })
     }
+    const loadCharactersPage = (page: number) => {
+        //axios.post("http://rickandmortyapi.com", requestBody)
+
+        axios.get("https://rickandmortyapi.com/api/character/?page="+page)
+            .then((response) => {
+                // Replace old characters with new ones
+                setCharacters(response.data.results)
+                // Add new Characters to old ones
+                // setCharacters([...characters, ...response.data.results])
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
 
     const saveCharacter = (newCharacter: Character) => {
         setCharacters([...characters, newCharacter])
@@ -48,6 +62,8 @@ export default function App() {
         <>
             <Header/>
             <button onClick={loadAllCharacters}>Load</button>
+            <button onClick={()=>loadCharactersPage(1)}>Load previous page</button>
+            <button onClick={()=>loadCharactersPage(2)}>Load next page</button>
             <Routes>
                 <Route path="/"
                        element={<HomePage/>}/>
